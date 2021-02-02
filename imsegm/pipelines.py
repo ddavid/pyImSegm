@@ -299,6 +299,7 @@ def train_classif_color2d_slic_features(
     sp_size=30,
     sp_regul=0.2,
     clf_name=CLASSIF_NAME,
+    clf_only=False,
     label_purity=0.9,
     feature_balance='unique',
     pca_coef=None,
@@ -378,8 +379,10 @@ def train_classif_color2d_slic_features(
         nb_search_iter=nb_classif_search,
         nb_workers=nb_workers,
     )
-
-    return classif, list_slic, list_features, list_labels
+    if not clf_only:
+        return classif, list_slic, list_features, list_labels
+    else:
+        return classif
 
 
 def pipe_gray3d_slic_features_model_graphcut(
